@@ -14,5 +14,13 @@ app.use(cookieParser())
 // routes 
 import userRouter from './routes/user.routes.js'
 // routes declaration 
-app.use("/fiesta/users",userRouter)
+app.use("/fiesta/users", userRouter);
+app.get("/", (req, res) => {
+    res.send("Hello, world!");
+});
+app.post("/test", (req, res) => {
+    res.send("Test route works!");
+});
+
+
 export {app}
