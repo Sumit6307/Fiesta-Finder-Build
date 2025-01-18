@@ -1,27 +1,16 @@
 import mongoose from "mongoose"
-import jwt from "jasonwebtoken"
+import {Schema} from "mongoose"
 import bcrypt from "bcrypt"
 const userSchema = new Schema( 
     {
-        firstname :{
+        fullname :{
             type : String,
             required : true ,
             trim : true ,
             index: true 
         },
-        lastname : {
-            type : String,
-            required : true ,
-            lowercase : true ,
-            trim : true 
-        },
-        phonenumber : {
-            type : Number ,
-            required : true ,
-            trim : true ,
-            index : true 
-            ,unique : true 
-        },
+
+
         email : {
             type : String,
             required : true ,
@@ -50,8 +39,7 @@ userSchema.methods.generateAccessToken = function(){
     return jwt.sign({
         _id: this._id,
         email : this.email,
-        phonenumber :this.phonenumber,
-        firstname: this.firstname
+        fullname: this.fullname
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
