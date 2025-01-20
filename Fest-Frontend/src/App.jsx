@@ -8,6 +8,8 @@ import Card from "./components/Card"
 import Option from "./components/Option"
 import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
+import Home from "./pages/Home";
+
 
 
 export default function App () {
@@ -24,6 +26,8 @@ export default function App () {
                     <Route path="/option" element={<Option />} />
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="/venue" element={<Venue />} />
+                    <Route path='/homecom' element={<Home/>}/>
+
                 </Routes>
             </Router>
         </>

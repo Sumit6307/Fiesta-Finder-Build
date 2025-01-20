@@ -1,0 +1,138 @@
+[
+    {
+      "id": 1,
+      "name": "The Grand Radiant Hotel",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAJPiLqIMDxia_Uuf6oLbZewEseotgFusrqw&s",
+      "location": "Hazratganj, Lucknow",
+      "price": 3500,
+      "rating": 4.8,
+      "promotions": ["10% off", "Free Parking"]
+    },
+    {
+      "id": 2,
+      "name": "Hotel Galaxy Grand",
+      "image": "https://example.com/image2.jpg",
+      "location": "Gomti Nagar, Lucknow",
+      "price": 5000,
+      "rating": 4.9,
+      "promotions": ["5% off"]
+    },
+    {
+      "id": 3,
+      "name": "The Event House Lucknow",
+      "image": "https://example.com/image3.jpg",
+      "location": "Hazratganj, Lucknow",
+      "price": 10000,
+      "rating": 5.0,
+      "promotions": ["15% off", "Complimentary Breakfast"]
+    },
+    {
+      "id": 4,
+      "name": "Divino Events By S Quattro Solutions",
+      "image": "https://example.com/image4.jpg",
+      "location": "Gomti Nagar, Lucknow",
+      "price": 50000,
+      "rating": 5.0,
+      "promotions": ["10% off", "VIP Lounge Access"]
+    },
+    {
+      "id": 5,
+      "name": "The Bundgarh Resort",
+      "image": "https://example.com/image5.jpg",
+      "location": "Gomti Nagar, Lucknow",
+      "price": 8000,
+      "rating": 4.9,
+      "promotions": ["10% off"]
+    },
+    {
+      "id": 6,
+      "name": "Hotel Prayag Inn",
+      "image": "https://example.com/image6.jpg",
+      "location": "Dhoomanganj, Allahabad",
+      "price": 6500,
+      "rating": 4.8,
+      "promotions": ["10% off", "Complimentary WiFi"]
+    },
+    {
+      "id": 7,
+      "name": "Trident Lawn",
+      "image": "https://example.com/image7.jpg",
+      "location": "Gomti Nagar, Lucknow",
+      "price": 10000,
+      "rating": 4.9,
+      "promotions": ["5% off"]
+    },
+    {
+      "id": 8,
+      "name": "Hotel Moments, Lucknow",
+      "image": "https://example.com/image8.jpg",
+      "location": "Ashiyana, Lucknow",
+      "price": 9500,
+      "rating": 4.9,
+      "promotions": ["5% off"]
+    },
+    {
+      "id": 9,
+      "name": "The Royal Orchid Hotel",
+      "image": "https://example.com/image9.jpg",
+      "location": "Hazratganj, Lucknow",
+      "price": 7000,
+      "rating": 4.7,
+      "promotions": ["Free Welcome Drink"]
+    },
+    {
+      "id": 10,
+      "name": "The Luxury Palace",
+      "image": "https://example.com/image10.jpg",
+      "location": "Indira Nagar, Lucknow",
+      "price": 12000,
+      "rating": 4.9,
+      "promotions": ["20% off", "Free Spa Access"]
+    },
+    {
+      "id": 11,
+      "name": "Hotel Heritage Inn",
+      "image": "https://example.com/image11.jpg",
+      "location": "Rajajipuram, Lucknow",
+      "price": 4000,
+      "rating": 4.6,
+      "promotions": ["5% off", "Free Breakfast"]
+    },
+    {
+      "id": 12,
+      "name": "The Emerald Grand",
+      "image": "https://example.com/image12.jpg",
+      "location": "Hazratganj, Lucknow",
+      "price": 5500,
+      "rating": 4.8,
+      "promotions": ["10% off"]
+    },
+    {
+      "id": 13,
+      "name": "The Platinum Lounge",
+      "image": "https://example.com/image13.jpg",
+      "location": "Chowk, Lucknow",
+      "price": 6000,
+      "rating": 4.7,
+      "promotions": ["Free Parking"]
+    },
+    {
+      "id": 14,
+      "name": "Hotel Paradise",
+      "image": "https://example.com/image14.jpg",
+      "location": "Gomti Nagar, Lucknow",
+      "price": 7500,
+      "rating": 4.9,
+      "promotions": ["15% off"]
+    },
+    {
+      "id": 15,
+      "name": "The Royal Vista",
+      "image": "https://example.com/image15.jpg",
+      "location": "Hazratganj, Lucknow",
+      "price": 3000,
+      "rating": 4.5,
+      "promotions": ["10% off", "Free Welcome Kit"]
+    }
+  ]
+  
