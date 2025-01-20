@@ -9,7 +9,7 @@ export default function Navbar2() {
             <nav className="lg:flex items-center justify-between bg-white py-4 md:px-10 px-7">
                 <div className="flex items-center justify-between gap-4">
                     <h2 className="hidden sm:block font-bold text-2xl text-indigo-600 cursor-pointer hover:text-indigo-700 transition-colors">
-                        eventify
+                        Fiesta Finder
                     </h2>
                     <h2 className="block sm:hidden font-bold text-4xl text-indigo-600 cursor-pointer hover:text-indigo-700 transition-colors">
                         E

@@ -1,24 +1,85 @@
-// src/pages/Home.jsx
-import React from "react";
-import useFetch from "../hooks/useFetch";
-import HotelList from "../components/HotelList";
+import Footer from "../components/Footer";
+import Navbar2 from "../components/Navbar2";
+import Filtersidebar from "../components/Filtersidepanel";
+import HotelCard from "../components/HotelCard"; // Import the HotelCard component
+import Option from "../components/Option";
+import { useState, useEffect } from "react";
 
-const Home = () => {
-  const { data: hotels, error, loading } = useFetch("/hotels.json");
+export default function HomePage() {
+  const [hotels, setHotels] = useState([]);
+  const [currentPage] = useState("1");
+  const [pages] = useState(["1", "2", "3", "...", "8", "9", "10"]);
 
-  if (loading) return <p>Loading hotels...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // Fetch data from the public folder
+  useEffect(() => {
+    fetch("/hotels.json")
+      .then((response) => response.json())
+      .then((data) => setHotels(data))
+      .catch((error) => console.error("Error fetching hotels data:", error));
+  }, []);
 
   return (
-    <div>
-      <h2>Wedding Awards</h2>
-      <HotelList hotels={hotels.slice(0, 4)} />
+    <div className="min-h-screen">
+      <Navbar2 />
 
-      <h2>Featured Wedding Vendors</h2>
-      <HotelList hotels={hotels.slice(4)} />
+      {/* Filter / Sorting */}
+      <div className="flex flex-col md:flex-row mt-20 md:mt-28 p-2 md:p-4 gap-2 md:gap-4">
+        {/* Sidebar - Hidden on smaller screens */}
+        <div className="hidden md:block md:sticky md:top-28 h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+          <Filtersidebar className="w-64" />
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between px-2 md:px-4">
+            <div className="px-5 md:px-4 text-2xl font-normal">
+              <span className="font-medium">Search For -</span> Ely Parkway
+              Apartment
+            </div>
+            <Option
+              id="Sort"
+              options={[
+                "Sort By",
+                "Price: Low to High",
+                "Price: High to Low",
+                "Newest",
+                "Oldest",
+              ]}
+            />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 px-2 md:px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
+              {hotels.map((hotel) => (
+                <HotelCard key={hotel.id} hotel={hotel} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pagination */}
+      <div className="max-w-screen-xl mx-auto mt-12 px-4 text-gray-600 md:px-8">
+        <div className="flex items-center justify-between text-sm text-gray-600 font-medium">
+          <a
+            href="javascript:void(0)"
+            className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50"
+          >
+            Previous
+          </a>
+          <div>
+            Page {currentPage} of {pages.length}
+          </div>
+          <a
+            href="javascript:void(0)"
+            className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50"
+          >
+            Next
+          </a>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
-};
-
-
-export default Home;
+}
