@@ -2,25 +2,58 @@ import Footer from "../components/Footer";
 import Navbar2 from "../components/Navbar2";
 import Filtersidebar from "../components/Filtersidepanel";
 import HotelCard from "../components/HotelCard"; // Import the HotelCard component
-import Option from "../components/Option";
+import SortDropdown from "../components/SortDropdown"; // Import SortDropdown instead of Option
 import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const [hotels, setHotels] = useState([]);
+  const [filteredHotels, setFilteredHotels] = useState([]);
   const [currentPage] = useState("1");
   const [pages] = useState(["1", "2", "3", "...", "8", "9", "10"]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("Sort By");
 
   // Fetch data from the public folder
   useEffect(() => {
     fetch("/hotels.json")
       .then((response) => response.json())
-      .then((data) => setHotels(data))
+      .then((data) => {
+        setHotels(data);
+        setFilteredHotels(data);
+      })
       .catch((error) => console.error("Error fetching hotels data:", error));
   }, []);
 
+  // Search functionality
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filtered = hotels.filter((hotel) =>
+      hotel.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredHotels(filtered);
+  };
+
+  // Sort functionality
+  const handleSort = (option) => {
+    setSortOption(option);
+    let sortedHotels = [...filteredHotels];
+
+    if (option === "Price: Low to High") {
+      sortedHotels = sortedHotels.sort((a, b) => a.price - b.price);
+    } else if (option === "Price: High to Low") {
+      sortedHotels = sortedHotels.sort((a, b) => b.price - a.price);
+    } else if (option === "Newest") {
+      sortedHotels = sortedHotels.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (option === "Oldest") {
+      sortedHotels = sortedHotels.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    setFilteredHotels(sortedHotels);
+  };
+
   return (
     <div className="min-h-screen">
-      <Navbar2 />
+      <Navbar2 onSearch={handleSearch} />  {/* Pass search function to Navbar2 */}
 
       {/* Filter / Sorting */}
       <div className="flex flex-col md:flex-row mt-20 md:mt-28 p-2 md:p-4 gap-2 md:gap-4">
@@ -32,10 +65,9 @@ export default function HomePage() {
         <div>
           <div className="flex items-center justify-between px-2 md:px-4">
             <div className="px-5 md:px-4 text-2xl font-normal">
-              <span className="font-medium">Search For -</span> Ely Parkway
-              Apartment
+              <span className="font-medium">Search For -</span> {searchQuery || "Ely Parkway Apartment"}
             </div>
-            <Option
+            <SortDropdown  // Use SortDropdown instead of Option
               id="Sort"
               options={[
                 "Sort By",
@@ -44,13 +76,14 @@ export default function HomePage() {
                 "Newest",
                 "Oldest",
               ]}
+              onSelect={handleSort}  // Pass handleSort to SortDropdown
             />
           </div>
 
           {/* Main Content */}
           <div className="flex-1 px-2 md:px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
-              {hotels.map((hotel) => (
+              {filteredHotels.map((hotel) => (
                 <HotelCard key={hotel.id} hotel={hotel} />
               ))}
             </div>
