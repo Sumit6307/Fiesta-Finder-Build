@@ -3,7 +3,7 @@ import axios from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signup() {
-    const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
+    const [formData, setFormData] = useState({ fullname: '', username: '', password: '' });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -48,13 +48,13 @@ export default function Signup() {
                             />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+                            <label htmlFor="username" className="text-sm font-medium text-gray-700">Username</label>
                             <input
                                 type="text"
-                                name="email"
-                                id="email"
+                                name="username"
+                                id="username"
                                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value={formData.email}
+                                value={formData.username}
                                 onChange={handleChange}
                                 required
                             />
