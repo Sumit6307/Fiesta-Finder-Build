@@ -1,4 +1,6 @@
 import { ArrowRight, Calendar, Users, MapPin, Star } from "lucide-react";
+import React from 'react';
+import TypingEffect from "./Typng-effect";
 
 export default function Hero() {
   const features = [
@@ -34,9 +36,7 @@ export default function Hero() {
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl">
               <span className="block mb-2">Create Memorable</span>
-              <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Events Together
-              </span>
+               <TypingEffect/>
             </h1>
             <p className="mt-8 text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
               From intimate gatherings to grand celebrations, we help you plan and execute
