@@ -43,9 +43,9 @@ export default function HomePage() {
     } else if (option === "Price: High to Low") {
       sortedHotels = sortedHotels.sort((a, b) => b.price - a.price);
     } else if (option === "Newest") {
-      sortedHotels = sortedHotels.sort((a, b) => new Date(b.date) - new Date(a.date));
+      sortedHotels = sortedHotels.sort((a, b) => b.id - a.id); // Newest by higher ID
     } else if (option === "Oldest") {
-      sortedHotels = sortedHotels.sort((a, b) => new Date(a.date) - new Date(b.date));
+      sortedHotels = sortedHotels.sort((a, b) => a.id - b.id); // Oldest by lower ID
     }
 
     setFilteredHotels(sortedHotels);
