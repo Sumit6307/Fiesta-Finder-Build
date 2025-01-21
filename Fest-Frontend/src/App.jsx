@@ -6,6 +6,8 @@ import Page404 from "./pages/Page404"
 import HomePage from './pages/HomePage'
 import Card from "./components/Card"
 import Option from "./components/Option"
+import ReserveYourSpot from "./components/ReserveYourSpot"
+
 import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
 import Home from "./pages/Home"
@@ -27,6 +29,8 @@ export default function App () {
                     <Route path="/venue" element={<Venue />} />
                     <Route path='/homecom' element={<Home/>}/>
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/reserve" element={<ReserveYourSpot />} />
+
                 </Routes>
             </Router>
         </>
