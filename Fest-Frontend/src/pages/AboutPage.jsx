@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import MySignature  from '../assets/signature.png';
 
 export default function AboutPage() {
     return (
@@ -62,6 +63,14 @@ export default function AboutPage() {
                     <p className="mt-2">
                         Let’s make your wedding a celebration of love, joy, and cherished moments. With Fiesta, you’re in safe hands.
                     </p>
+                </div>
+
+                <div className='mt-10'>
+                    <img src={MySignature} alt="Signature" className='w-52'/>
+                    <div className='flex flex-row gap-2 mt-1'>
+                        <p className='text-blue-900 text-lg'>John Doe - </p>
+                        <p className='text-blue-900 text-lg'>Founder, Fiesta</p>
+                    </div>
                 </div>
 
             </div>
