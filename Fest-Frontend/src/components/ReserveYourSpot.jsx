@@ -145,6 +145,7 @@ const ReserveYourSpot = () => {
         </div>
       </div>
 
+
       <Footer />
     </div>
   );
