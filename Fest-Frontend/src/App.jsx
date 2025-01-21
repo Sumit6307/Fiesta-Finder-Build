@@ -9,6 +9,7 @@ import Option from "./components/Option"
 import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
 import Home from "./pages/Home";
+import AboutPage from "./pages/AboutPage"
 
 
 
@@ -27,7 +28,7 @@ export default function App () {
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="/venue" element={<Venue />} />
                     <Route path='/homecom' element={<Home/>}/>
-
+                    <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
             </Router>
         </>
