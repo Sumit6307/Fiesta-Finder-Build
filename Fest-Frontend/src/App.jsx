@@ -9,10 +9,7 @@ import Option from "./components/Option"
 import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
 import Home from "./pages/Home";
-import ReserveYourSpot from "./components/ReserveYourSpot"
-
-
-
+import AboutPage from "./pages/AboutPage"
 
 export default function App () {
     return (
@@ -30,6 +27,7 @@ export default function App () {
                     <Route path="/venue" element={<Venue />} />
                     <Route path='/homecom' element={<Home/>}/>
                     <Route path="/hotel/:id" element={<ReserveYourSpot />} />
+                    <Route path="/about" element={<AboutPage />} />
 
 
                 </Routes>
