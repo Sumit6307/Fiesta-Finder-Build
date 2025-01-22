@@ -57,6 +57,8 @@ export default function Signup() {
                             onChange={handleChange}
                             required
                         />
+
+                        
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
