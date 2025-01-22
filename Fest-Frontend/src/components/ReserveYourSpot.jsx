@@ -6,23 +6,20 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "../styles/leaflet.css";
 
-
 const ReserveYourSpot = () => {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [guests, setGuests] = useState(1);
-
   useEffect(() => {
-    let map;
 
+    let map;
     fetch("/hotels.json")
       .then((response) => response.json())
       .then((data) => {
         const selectedHotel = data.find((hotel) => hotel.id === parseInt(id));
         setHotel(selectedHotel);
-
         if (selectedHotel && selectedHotel.latitude && selectedHotel.longitude) {
           // Check if the map container exists
           const mapContainer = document.getElementById("map");
@@ -31,12 +28,10 @@ const ReserveYourSpot = () => {
               [selectedHotel.latitude, selectedHotel.longitude],
               13
             );
-
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               maxZoom: 19,
               attribution: "© OpenStreetMap contributors",
             }).addTo(map);
-
             L.marker([selectedHotel.latitude, selectedHotel.longitude])
               .addTo(map)
               .bindPopup(`${selectedHotel.name}`)
@@ -45,16 +40,13 @@ const ReserveYourSpot = () => {
         }
       })
       .catch((error) => console.error("Error fetching hotel data:", error));
-
     return () => {
       if (map) map.remove(); // Clean up the map instance
     };
   }, [id]);
-
   if (!hotel) {
     return <div>Loading...</div>;
   }
-
   const handleBooking = () => {
     if (!checkInDate || !checkOutDate) {
       alert("Please select check-in and check-out dates.");
@@ -64,11 +56,9 @@ const ReserveYourSpot = () => {
       `Booking confirmed for ${hotel.name}.\nCheck-in: ${checkInDate}\nCheck-out: ${checkOutDate}\nGuests: ${guests}`
     );
   };
-
   return (
     <div className="min-h-screen flex flex-col max-w-[1200px] mx-auto">
       <Navbar2 />
-
       <div className="flex-grow container mx-auto px-4 py-8 mt-24">
         <div className="bg-white rounded-lg shadow-md mb-8">
           <img
@@ -89,7 +79,6 @@ const ReserveYourSpot = () => {
             <p className="text-gray-600 mb-4">
               Promotions: {hotel.promotions.join(", ")}
             </p>
-
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
               Nearby Attractions:
             </h3>
@@ -98,7 +87,6 @@ const ReserveYourSpot = () => {
                 <li key={index}>{attraction}</li>
               ))}
             </ul>
-
             <div className="mb-6">
               <label className="block text-gray-600 mb-2">Check-in Date</label>
               <input
@@ -108,7 +96,6 @@ const ReserveYourSpot = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
             </div>
-
             <div className="mb-6">
               <label className="block text-gray-600 mb-2">Check-out Date</label>
               <input
@@ -118,7 +105,6 @@ const ReserveYourSpot = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
             </div>
-
             <div className="mb-6">
               <label className="block text-gray-600 mb-2">Number of Guests</label>
               <input
@@ -130,7 +116,6 @@ const ReserveYourSpot = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
             </div>
-
             <button
               onClick={handleBooking}
               className="mt-6 w-full py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition-colors"
@@ -139,17 +124,13 @@ const ReserveYourSpot = () => {
             </button>
           </div>
         </div>
-
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">Hotel Location</h3>
           <div id="map" className="w-full h-[300px] rounded-lg"></div>
         </div>
       </div>
-
-
       <Footer />
     </div>
   );
 };
-
 export default ReserveYourSpot;
