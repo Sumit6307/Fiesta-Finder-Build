@@ -3,7 +3,7 @@ import axios from '../api/axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signup() {
-    const [formData, setFormData] = useState({ fullname: '', username: '', password: '' });
+    const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
     const [error, setError] = useState(''); // State to handle error messages
     const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ export default function Signup() {
 
             // Automatically login after signup
             const loginResponse = await axios.post('/users/login', {
-                username: formData.username,
+                email: formData.email,
                 password: formData.password,
             });
 
@@ -70,17 +70,17 @@ export default function Signup() {
                         />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="username" className="text-sm font-medium text-gray-700">
-                            Username
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                            Email
                         </label>
                         <input
                             type="text"
-                            name="username"
-                            id="username"
+                            name="email"
+                            id="email"
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={formData.username}
+                            value={formData.email}
                             onChange={handleChange}
-                            placeholder="Enter a unique username"
+                            placeholder="Enter a  email"
                             required
                         />
                     </div>

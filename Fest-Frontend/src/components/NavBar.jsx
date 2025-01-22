@@ -35,7 +35,7 @@ const NavBar = () => {
                             onClick={toggleProfileDropdown}
                             className="flex items-center space-x-2 hover:text-blue-600"
                         >
-                            <span className="font-medium text-gray-700">{user.fullname || user.username}</span>
+                            <span className="font-medium text-gray-700">{user.fullname || user.email}</span>
                             <svg
                                 className={`w-4 h-4 transform transition-transform duration-200 ${
                                     isProfileDropdownOpen ? 'rotate-180' : ''

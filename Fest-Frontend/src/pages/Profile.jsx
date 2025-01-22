@@ -59,8 +59,7 @@ export default function ProfilePage() {
             <h1 className="text-3xl font-bold mb-6">Your Profile</h1>
             <div className="w-full max-w-md bg-white shadow-md p-6 rounded-md mb-6">
                 <p><strong>Full Name:</strong> {user.fullname}</p>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email || 'N/A'}</p>
+                <p><strong>Email:</strong> {user.email }</p>
             </div>
 
             {/* Change Password Section */}

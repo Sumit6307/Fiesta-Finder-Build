@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from '../api/axiosInstance'; // Make sure the path is correct
 
 export default function Signin() {
-    const [formData, setFormData] = useState({ username: '', password: '' });
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -35,16 +35,17 @@ export default function Signin() {
                 </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="username" className="text-sm font-medium text-gray-700">
-                            Username
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                            Email
                         </label>
                         <input
                             type="text"
-                            name="username"
-                            id="username"
+                            name="email"
+                            id="email"
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={formData.username}
+                            value={formData.email}
                             onChange={handleChange}
+                            placeholder = "Enter your email"
                             required
                         />
                     </div>
@@ -59,6 +60,7 @@ export default function Signin() {
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={formData.password}
                             onChange={handleChange}
+                            placeholder="Enter your password"
                             required
                         />
                     </div>

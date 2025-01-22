@@ -4,18 +4,18 @@ import User from '../models/User.js';
 
 // Register User
 export const registerUser = async (req, res) => {
-    const { fullname, username, password } = req.body;
+    const { fullname, email, password } = req.body;
 
     try {
-        // Check if the username already exists
-        const existingUser = await User.findOne({ username });
+        // Check if the email already exists
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'Username already exists!' });
+            return res.status(400).json({ message: 'Email already exists!' });
         }
 
         // Hash the password and save the user
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ fullname, username, password: hashedPassword });
+        const newUser = new User({ fullname, email, password: hashedPassword });
         await newUser.save();
 
         res.status(201).json({ message: 'User registered successfully!' });
@@ -26,11 +26,11 @@ export const registerUser = async (req, res) => {
 
 // Login User
 export const loginUser = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        // Find user by username
-        const user = await User.findOne({ username });
+        // Find user by email
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: 'User not found!' });
         }
@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
         res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
         res.json({
             message: 'Login successful!',
-            user: { fullname: user.fullname, username: user.username },
+            user: { fullname: user.fullname, email: user.email },
         });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in!', error: error.message });

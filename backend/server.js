@@ -25,6 +25,6 @@ app.use('/api/users', userRoutes); // Prefix for user-related routes
 
 // Connect to MongoDB and start the server
 mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
+    .connect(process.env.MONGO_URI)
+    .then(() => app.listen(PORT, () => console.log(`Mongo Atlas Connected and Server running on port ${PORT}`)))
     .catch((error) => console.error('MongoDB connection error:', error));

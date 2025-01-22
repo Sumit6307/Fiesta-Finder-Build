@@ -130,7 +130,7 @@ export default function Navbar2({ onSearch }) {
             <div className="flex items-center gap-4">
                 {user ? (
                     <>
-                        <span className="text-sm">Welcome, {user.fullname || user.username}</span>
+                        <span className="text-sm">Welcome, {user.fullname || user.email}</span>
                         <button
                             onClick={() => navigate('/profile')}
                             className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition"
