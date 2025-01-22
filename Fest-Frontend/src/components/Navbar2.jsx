@@ -1,46 +1,160 @@
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from '../api/axiosInstance';
 
 export default function Navbar2({ onSearch }) {
-  const [isOpen, setIsOpen] = useState(false);
+    const [user, setUser] = useState(null); // To store logged-in user info
+    const [searchQuery, setSearchQuery] = useState(''); // Search query state
+    const [isFocused, setIsFocused] = useState(false); // To manage focus state
+    const [searchSuggestions, setSearchSuggestions] = useState([]); // Dynamic suggestions
+    const [showSuggestions, setShowSuggestions] = useState(false); // Control dropdown visibility
+    const navigate = useNavigate();
 
-  const handleSearchChange = (e) => {
-    onSearch(e.target.value);  // Pass the search value to the parent component
-  };
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const response = await axios.get('/users/profile', { withCredentials: true });
+                setUser(response.data);
+            } catch (error) {
+                console.error('Error fetching user details:', error.response?.data?.message || error.message);
+            }
+        };
+        fetchUserDetails();
+    }, []);
 
-  return (
-    <div className="shadow-md w-full fixed top-0 left-0 z-50">
-      <nav className="lg:flex items-center justify-between bg-white py-4 md:px-10 px-7">
-        <div className="flex items-center justify-between gap-4">
-          <h2 className="hidden sm:block font-bold text-2xl text-indigo-600 cursor-pointer hover:text-indigo-700 transition-colors">
-            Fiesta Finder
-          </h2>
-          <h2 className="block sm:hidden font-bold text-4xl text-indigo-600 cursor-pointer hover:text-indigo-700 transition-colors">
-            E
-          </h2>
+    const handleLogout = async () => {
+        try {
+            await axios.post('/users/logout', {}, { withCredentials: true });
+            setUser(null);
+            navigate('/login');
+        } catch (error) {
+            alert('Error logging out!');
+        }
+    };
 
-          {/* Search */}
-          <div className="md:ml-8 md:w-96">
-            <form onSubmit={(e) => e.preventDefault()} className="w-full">
-              <div className="relative">
-                <svg xmlns="http://www.w3.org/2000/svg" className="absolute top-0 bottom-0 w-5 h-5 my-auto text-gray-400 left-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  onChange={handleSearchChange}  // Handle search input
-                  className="w-full py-2 pl-12 pr-4 text-gray-500 border rounded-lg outline-none bg-gray-50 focus:bg-white focus:border-indigo-600 transition-colors"
-                />
-              </div>
-            </form>
-          </div>
+    // Handle input change for search
+    const handleInputChange = async (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
 
-          <button className="cursor-pointer lg:hidden hover:text-indigo-600 transition-colors" onClick={() => setIsOpen(!isOpen)}>
-            <Menu className="text-4xl" />
-          </button>
-        </div>
-      </nav>
-    </div>
-  );
+        // Show suggestions if query is not empty
+        if (query.trim() !== '') {
+            try {
+                const response = await axios.get(`/search/suggestions?query=${query}`);
+                setSearchSuggestions(response.data || []);
+                setShowSuggestions(true);
+            } catch (error) {
+                console.error("Error fetching search suggestions:", error);
+                setShowSuggestions(false);
+            }
+        } else {
+            setShowSuggestions(false);
+        }
+    };
+
+    // Handle search submission
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (onSearch) {
+            onSearch(searchQuery);
+        }
+        setShowSuggestions(false);
+    };
+
+    // Handle suggestion click
+    const handleSuggestionClick = (suggestion) => {
+        setSearchQuery(suggestion);
+        setShowSuggestions(false);
+        if (onSearch) {
+            onSearch(suggestion);
+        }
+    };
+
+    return (
+        <nav className="bg-blue-600 text-white px-4 py-2 flex items-center justify-between">
+            {/* Logo and Landing Page Link */}
+            <div className="flex items-center gap-4">
+                <Link to="/home" className="text-lg font-bold">Fiesta Finder</Link>
+                <Link
+                    to="/"
+                    className="text-sm bg-white text-blue-600 px-2 py-1 rounded hover:bg-gray-200 transition"
+                >
+                    Go to Home Page
+                </Link>
+            </div>
+            
+            {/* Search Bar */}
+            <div className={`relative flex-grow mx-4 max-w-md transition-transform ${isFocused ? 'opacity-100' : 'opacity-50'} ease-in-out duration-300`}>
+                <form
+                    onSubmit={handleSearch}
+                    className="relative"
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(searchQuery.trim() !== '' ? true : false)}
+                >
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleInputChange}
+                        placeholder="Search..."
+                        className={`w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ${isFocused ? 'bg-white text-black shadow-md' : 'bg-gray-200 text-gray-700'}`}
+                    />
+                    <button
+                        type="submit"
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800"
+                    >
+                        🔍
+                    </button>
+                </form>
+
+                {/* Suggestions Dropdown */}
+                {showSuggestions && (
+                    <div className="absolute bg-white text-black rounded-md shadow-lg mt-1 w-full max-h-40 overflow-y-auto custom-scrollbar">
+                        {searchSuggestions.length > 0 ? (
+                            searchSuggestions.map((suggestion, index) => (
+                                <div
+                                    key={index}
+                                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                                    onClick={() => handleSuggestionClick(suggestion)}
+                                >
+                                    {suggestion}
+                                </div>
+                            ))
+                        ) : (
+                            <div className="px-4 py-2 text-gray-500">No suggestions found</div>
+                        )}
+                    </div>
+                )}
+            </div>
+
+            {/* User Actions */}
+            <div className="flex items-center gap-4">
+                {user ? (
+                    <>
+                        <span className="text-sm">Welcome, {user.fullname || user.username}</span>
+                        <button
+                            onClick={() => navigate('/profile')}
+                            className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition"
+                        >
+                            Profile
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition"
+                        >
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <Link to="/login" className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition">
+                            Login
+                        </Link>
+                        <Link to="/register" className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition">
+                            Sign Up
+                        </Link>
+                    </>
+                )}
+            </div>
+        </nav>
+    );
 }

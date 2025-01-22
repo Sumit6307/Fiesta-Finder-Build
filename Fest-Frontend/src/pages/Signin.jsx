@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from '../api/axiosInstance';
+import axios from '../api/axiosInstance'; // Make sure the path is correct
 
 export default function Signin() {
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -15,9 +15,9 @@ export default function Signin() {
         try {
             const response = await axios.post('/users/login', formData);
             alert(response.data.message);
-            navigate('/home'); // Navigate to home or dashboard after successful login
+            navigate('/home'); // Navigate to home after successful login
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error.response?.data?.message || 'Something went wrong!');
         }
     };
 

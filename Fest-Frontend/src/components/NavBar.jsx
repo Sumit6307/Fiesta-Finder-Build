@@ -1,73 +1,96 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const navigation = [
-    { title: "Features", path: "#features" },
-    { title: "How it Works", path: "#how-it-works" },
-    { title: "FAQ", path: "#faq" },
-    { title: "Contact", path: "#contact" },
-  ];
+    const { user, logout } = useContext(AuthContext); // Access user and logout functions from context
+    const navigate = useNavigate();
 
-  return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold text-blue-600">Fiesta Finder</span>
-          </div>
-          
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-8">
-              {navigation.map((item, idx) => (
-                <a
-                  key={idx}
-                  href={item.path}
-                  className="text-gray-600 hover:text-blue-600 transition-colors px-3 py-2 text-sm font-medium"
-                >
-                  {item.title}
-                </a>
-              ))}
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                Get Started
-              </button>
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // Profile dropdown visibility
+
+    // Handle logout functionality
+    const handleLogout = () => {
+        logout(); // Clears user session
+        navigate('/login'); // Redirects to login page
+    };
+
+    // Toggle dropdown visibility
+    const toggleProfileDropdown = () => {
+        setIsProfileDropdownOpen((prev) => !prev);
+    };
+
+    return (
+        <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+            {/* Logo */}
+            <h1 className="text-2xl font-bold text-blue-600">
+                <Link to="/">Fiesta Finder</Link>
+            </h1>
+
+            {/* User Actions */}
+            <div className="flex items-center space-x-4">
+                {user ? (
+                    <div className="relative">
+                        {/* Profile Button */}
+                        <button
+                            onClick={toggleProfileDropdown}
+                            className="flex items-center space-x-2 hover:text-blue-600"
+                        >
+                            <span className="font-medium text-gray-700">{user.fullname || user.username}</span>
+                            <svg
+                                className={`w-4 h-4 transform transition-transform duration-200 ${
+                                    isProfileDropdownOpen ? 'rotate-180' : ''
+                                }`}
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 01.02-1.06z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        {isProfileDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
+                                <Link
+                                    to="/profile"
+                                    className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                                >
+                                    Profile
+                                </Link>
+                                <button
+                                    onClick={handleLogout}
+                                    className="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className="flex items-center space-x-4">
+                        {/* Login Button */}
+                        <Link
+                            to="/login"
+                            className="text-blue-600 font-medium hover:text-blue-800"
+                        >
+                            Log in
+                        </Link>
+                        {/* Signup Button */}
+                        <Link
+                            to="/register"
+                            className="text-blue-600 font-medium hover:text-blue-800"
+                        >
+                            Sign up
+                        </Link>
+                    </div>
+                )}
             </div>
-          </div>
-          
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-            {navigation.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.path}
-                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600"
-              >
-                {item.title}
-              </a>
-            ))}
-            <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-              Get Started
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
+        </nav>
+    );
 };
 
 export default NavBar;

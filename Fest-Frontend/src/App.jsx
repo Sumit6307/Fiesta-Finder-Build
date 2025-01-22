@@ -12,27 +12,35 @@ import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
 import Home from "./pages/Home"
 import AboutPage from "./pages/AboutPage"
+import Profile from './pages/Profile';
+import { AuthProvider } from "./context/AuthContext"
+
+
 
 export default function App () {
     return (
         <>
+         <AuthProvider>
             <Router>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/register" element={<Signup />} />
                     <Route path="/login" element={<Signin />} />
-                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/homecom" element={<HomePage />} />
                     <Route path="*" element={<Page404 />} />
                     <Route path="/card" element={<Card />} />
                     <Route path="/option" element={<Option />} />
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="/venue" element={<Venue />} />
-                    <Route path='/homecom' element={<Home/>}/>
+                    <Route path='/home' element={<Home/>}/>
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/hotel/:id" element={<ReserveYourSpot />} />
+                    <Route path="/profile" element={<Profile />} />
+
 
                 </Routes>
             </Router>
+            </AuthProvider>
         </>
     )
 }

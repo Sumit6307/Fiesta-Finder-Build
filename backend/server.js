@@ -1,20 +1,30 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userRoutes from './routes/users.js';
 
 dotenv.config();
+
 const app = express();
-
-app.use(cors());
-app.use(express.json());
-app.use('/users', userRoutes);
-
 const PORT = process.env.PORT || 5000;
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
-        app.listen(PORT, () => console.log(`MongoDB Atlas Connected and Server running on port ${PORT}`));
+
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+    cors({
+        origin: 'http://localhost:5173', // Allow frontend
+        credentials: true, // Allow cookies
     })
-    .catch((error) => console.error('Error connecting to MongoDB:', error));
+);
+
+// Routes
+app.use('/api/users', userRoutes); // Prefix for user-related routes
+
+// Connect to MongoDB and start the server
+mongoose
+    .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
+    .catch((error) => console.error('MongoDB connection error:', error));
