@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "../styles/leaflet.css";
 
+
 const ReserveYourSpot = () => {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
