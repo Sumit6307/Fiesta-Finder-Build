@@ -29,7 +29,7 @@ export default function App () {
                     <Route path="/venue" element={<Venue />} />
                     <Route path='/homecom' element={<Home/>}/>
                     <Route path="/about" element={<AboutPage />} />
-                    <Route path="/reserve" element={<ReserveYourSpot />} />
+                    <Route path="/hotel/:id" element={<ReserveYourSpot />} />
 
                 </Routes>
             </Router>
