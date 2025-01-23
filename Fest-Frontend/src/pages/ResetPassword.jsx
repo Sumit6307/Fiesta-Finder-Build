@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axiosInstance';
+import logo from '../assets/fiesta-finder-logo.jpeg'; // Replace with actual path
 
 export default function ResetPassword() {
     const { token } = useParams();
@@ -18,23 +19,44 @@ export default function ResetPassword() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-            <form onSubmit={handleSubmit} className="w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-4">Reset Password</h2>
-                <div className="flex flex-col gap-2 mb-4">
-                    <label htmlFor="newPassword">New Password</label>
-                    <input
-                        type="password"
-                        id="newPassword"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        className="p-2 border rounded"
-                        placeholder="Enter your new password"
-                        required
-                    />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 via-white to-blue-50">
+            {/* Card Container */}
+            <div className="w-full max-w-lg p-8 rounded-lg shadow-lg bg-white">
+                {/* Logo Section */}
+                <div className="flex justify-center mb-6">
+                    <img src={logo} alt="Fiesta Finder Logo" className="w-24 h-24 rounded-full shadow-md" />
                 </div>
-                <button type="submit" className="p-2 bg-blue-500 text-white rounded">Reset Password</button>
-            </form>
+
+                {/* Form Header */}
+                <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Reset Password</h2>
+                <p className="text-base text-gray-500 mb-6 text-center">
+                    Enter your new password below to reset your password.
+                </p>
+
+                {/* Reset Password Form */}
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="newPassword" className="text-sm font-medium text-gray-700">
+                            New Password
+                        </label>
+                        <input
+                            type="password"
+                            id="newPassword"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your new password"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-4 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-shadow shadow-md"
+                    >
+                        Reset Password
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
