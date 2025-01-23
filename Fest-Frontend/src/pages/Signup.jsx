@@ -71,7 +71,7 @@ export default function Signup() {
                         alt="Google Logo"
                         className="w-6 h-6"
                     />
-                    Sign up with Google
+                    Sign in with Google
                 </button>
                 <button
                     onClick={handleFacebookSignup}
@@ -82,7 +82,7 @@ export default function Signup() {
                         alt="Facebook Logo"
                         className="w-6 h-6"
                     />
-                    Sign up with Facebook
+                    Sign in with Facebook
                 </button>
                 <div className="flex items-center my-6">
                     <hr className="flex-grow border-gray-300" />
