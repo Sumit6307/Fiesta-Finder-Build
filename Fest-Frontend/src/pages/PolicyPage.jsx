@@ -48,7 +48,7 @@ export default function PolicyPage() {
                     
                     <div className="space-y-6">
                         <div className=" p-5 rounded-lg">
-                            <h3 className="text-xl font-semibold text-purple-800 mb-3">Information We Collect</h3>
+                            <h3 className="</div>text-xl font-semibold text-purple-800 mb-3">Information We Collect</h3>
                             <ul className="list-disc pl-5 text-gray-700 space-y-2">
                                 <li><strong>Personal Information:</strong> Name, email, contact details</li>
                                 <li><strong>Non-Personal Data:</strong> Browser, device, and IP information</li>
