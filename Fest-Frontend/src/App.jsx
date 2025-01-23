@@ -15,9 +15,8 @@ import ForgetPassword from './pages/ForgetPassword';
 import ResetPassword from './pages/ResetPassword';
 import PolicyPage from "./pages/PolicyPage"
 import TeamPage from "./pages/TeamPage"
-
-
-
+import BlogPage from "./pages/BlogPage"
+import BlogCard from "./components/BlogCard"
 
 export default function App () {
     return (
@@ -40,6 +39,9 @@ export default function App () {
                     <Route path="/policy" element={<PolicyPage />} />
                     <Route path="/team" element={<TeamPage />} />
                     <Route path="/reset-password/:token" element={<ResetPassword />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blogcard" element={<BlogCard />} />
+
 
                 </Routes>
             </Router>
