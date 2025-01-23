@@ -14,6 +14,8 @@ import { AuthProvider } from "./context/AuthContext"
 import ForgetPassword from './pages/ForgetPassword';
 import ResetPassword from './pages/ResetPassword';
 import PolicyPage from "./pages/PolicyPage"
+import TeamPage from "./pages/TeamPage"
+
 
 
 
@@ -36,6 +38,7 @@ export default function App () {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/forgot-password" element={<ForgetPassword />} />
                     <Route path="/policy" element={<PolicyPage />} />
+                    <Route path="/team" element={<TeamPage />} />
                     <Route path="/reset-password/:token" element={<ResetPassword />} />
 
                 </Routes>
