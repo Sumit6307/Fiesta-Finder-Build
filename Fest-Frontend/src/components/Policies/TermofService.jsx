@@ -140,7 +140,7 @@ export default function TermsOfService() {
                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
                                     />
                                 </svg>
-                                <span>Our service is provided "as is" without any warranties.</span>
+                                <span>Our service is provided &quot;as is&quot; without any warranties.</span>
                             </li>
                             <li className="flex items-start">
                                 <svg
