@@ -45,7 +45,7 @@ export default function Signin() {
                             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder = "Enter your email"
+                            placeholder="Enter your email"
                             required
                         />
                     </div>
@@ -64,12 +64,18 @@ export default function Signin() {
                             required
                         />
                     </div>
-                    <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-4">
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-4">
                         Sign in
                     </button>
                 </form>
                 <p className="text-center mt-4">
-                    <button className="text-blue-600 hover:text-blue-800">
+                    {/* Forgot Password button */}
+                    <button
+                        className="text-blue-600 hover:text-blue-800"
+                        onClick={() => navigate('/forgot-password')} // Navigate to ForgetPassword.jsx
+                    >
                         Forgot password?
                     </button>
                 </p>

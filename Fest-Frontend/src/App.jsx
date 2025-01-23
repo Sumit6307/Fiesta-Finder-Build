@@ -14,6 +14,8 @@ import Home from "./pages/Home"
 import AboutPage from "./pages/AboutPage"
 import Profile from './pages/Profile';
 import { AuthProvider } from "./context/AuthContext"
+import ForgetPassword from './pages/ForgetPassword';
+import ResetPassword from './pages/ResetPassword';
 
 
 
@@ -36,7 +38,8 @@ export default function App () {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/hotel/:id" element={<ReserveYourSpot />} />
                     <Route path="/profile" element={<Profile />} />
-
+                    <Route path="/forgot-password" element={<ForgetPassword />} />
+                    <Route path="/reset-password/:token" element={<ResetPassword />} />
 
                 </Routes>
             </Router>
