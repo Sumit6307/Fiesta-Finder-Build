@@ -4,7 +4,7 @@ import Signup from "./pages/Signup"
 import Signin from "./pages/Signin"
 import Page404 from "./pages/Page404"
 import HomePage from './pages/HomePage'
-// import ReserveYourSpot from "./components/ReserveYourSpot"
+import ReserveYourSpot from "./components/ReserveYourSpot"
 import AdminPage from "./pages/AdminPage"
 import Venue from "./pages/Venue"
 import Home from "./pages/Home"
@@ -34,7 +34,7 @@ export default function App () {
                     <Route path="/venue" element={<Venue />} />
                     <Route path='/home' element={<Home/>}/>
                     <Route path="/about" element={<AboutPage />} />
-                    {/* <Route path="/hotel/:id" element={<ReserveYourSpot />} /> */}
+                    <Route path="/hotel/:id" element={<ReserveYourSpot />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/forgot-password" element={<ForgetPassword />} />
                     <Route path="/policy" element={<PolicyPage />} />

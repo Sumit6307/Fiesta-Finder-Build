@@ -49,7 +49,7 @@ export default function Footer () {
             </ul>
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="mt-4 sm:mt-0">
-                    &copy; 2022 Float UI All rights reserved.
+                    &copy; 2025 Fiesta Finder - All rights reserved.
                 </div>
                 <div className="mt-6 sm:mt-0">
                     <ul className="flex items-center space-x-4">
