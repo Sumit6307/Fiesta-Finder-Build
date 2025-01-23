@@ -1,5 +1,4 @@
 import { ArrowRight, Calendar, Users, MapPin, Star } from "lucide-react";
-import React from 'react';
 import TypingEffect from "./Typng-effect";
 import { Link } from "react-router-dom";
 
@@ -29,7 +28,7 @@ export default function Hero() {
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+    <div className="relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
       
       <div className="relative pt-24 pb-20 sm:pt-32 sm:pb-24">
