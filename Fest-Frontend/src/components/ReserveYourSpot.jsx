@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar2 from "../components/Navbar2";
 import Footer from "../components/Footer";
