@@ -1,5 +1,7 @@
 import { ArrowRight, Calendar, Users, MapPin, Star } from "lucide-react";
 import TypingEffect from "./Typng-effect";
+import { Link } from "react-router-dom";
+
 
 export default function Hero() {
   const features = [
@@ -43,7 +45,7 @@ export default function Hero() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
               <button className="group inline-flex items-center justify-center px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl">
-                Start Planning
+              <Link to={`/home`}> Start Planning </Link>   
                 <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button className="px-8 py-4 rounded-xl bg-white text-gray-900 font-semibold text-lg ring-1 ring-gray-200 hover:ring-gray-300 hover:bg-gray-50 transition-all duration-200 shadow-md hover:shadow-lg">
