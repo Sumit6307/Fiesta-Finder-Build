@@ -37,9 +37,6 @@ export default function CareerPage() {
                         <div className="px-6 py-2 bg-gray-100 rounded-full text-gray-700 font-medium">
                             <span>3+</span> Team Members
                         </div>
-                        <div className="px-6 py-2 bg-gray-100 rounded-full text-gray-700 font-medium">
-                            <span>15</span> Countries
-                        </div>
                     </div>
                 </div>
 
