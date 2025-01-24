@@ -17,6 +17,7 @@ import PolicyPage from "./pages/PolicyPage"
 import TeamPage from "./pages/TeamPage"
 import BlogPage from "./pages/BlogPage"
 import TermsOfService from "./components/Policies/TermofService"
+import CareerPage from "./pages/CareerPage"
 
 export default function App () {
     return (
@@ -41,6 +42,7 @@ export default function App () {
                     <Route path="/reset-password/:token" element={<ResetPassword />} />
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/terms-of-service" element={<TermsOfService />} />
+                    <Route path="/careers" element={<CareerPage />} />
 
                 </Routes>
             </Router>
