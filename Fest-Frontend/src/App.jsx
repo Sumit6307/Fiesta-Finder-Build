@@ -18,6 +18,8 @@ import TeamPage from "./pages/TeamPage"
 import BlogPage from "./pages/BlogPage"
 import TermsOfService from "./components/Policies/TermofService"
 import CareerPage from "./pages/CareerPage"
+import VerifyEmail from './pages/VerifyEmail'; // Import VerifyEmail component
+
 
 export default function App () {
     return (
@@ -43,6 +45,9 @@ export default function App () {
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/terms-of-service" element={<TermsOfService />} />
                     <Route path="/careers" element={<CareerPage />} />
+                    <Route path="/verify/:token" element={<VerifyEmail />} /> {/* Add this line */}
+
+
 
                 </Routes>
             </Router>

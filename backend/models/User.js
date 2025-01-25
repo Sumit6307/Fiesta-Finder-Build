@@ -6,8 +6,8 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     resetToken: { type: String },
     resetTokenExpiration: { type: Date },
+    isVerified: { type: Boolean, default: false }, // Add isVerified field
 }, { timestamps: true });
-
 
 const User = mongoose.model('User', UserSchema);
 export default User;

@@ -1,6 +1,6 @@
 import mailjet from 'node-mailjet';
 
-const sendEmail = async ({ to, subject, text }) => {
+const sendEmail = async ({ to, subject, text, html }) => {
     const client = mailjet.connect(process.env.MAILJET_API_KEY, process.env.MAILJET_API_SECRET);
 
     const request = client.post('send', { version: 'v3.1' }).request({
@@ -9,8 +9,8 @@ const sendEmail = async ({ to, subject, text }) => {
                 From: { Email: 'sumitkesar6307@gmail.com', Name: 'Fiesta Finder' },
                 To: [{ Email: to }],
                 Subject: subject,
-                TextPart: text, // Plain text body
-                HTMLPart: text, // HTML body (if you want to include a link)
+                TextPart: text,
+                HTMLPart: html,
             },
         ],
     });

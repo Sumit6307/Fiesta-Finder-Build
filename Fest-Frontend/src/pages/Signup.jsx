@@ -1,3 +1,4 @@
+// Signup.jsx
 import { useState } from 'react';
 import axios from '../api/axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,15 +18,7 @@ export default function Signup() {
         e.preventDefault();
         try {
             const response = await axios.post('/users/register', formData);
-            alert(response.data.message);
-
-            const loginResponse = await axios.post('/users/login', {
-                email: formData.email,
-                password: formData.password,
-            });
-
-            localStorage.setItem('user', JSON.stringify(loginResponse.data));
-            navigate('/home');
+            alert(response.data.message); // Notify user to check email for verification
         } catch (error) {
             console.error('Error during signup:', error);
             setError(error.response?.data?.message || 'Something went wrong!');
@@ -43,6 +36,7 @@ export default function Signup() {
         const facebookRedirectUri = import.meta.env.VITE_FACEBOOK_REDIRECT_URI;
         window.location.href = `https://www.facebook.com/v4.0/dialog/oauth?client_id=${facebookAppId}&redirect_uri=${facebookRedirectUri}&response_type=token&scope=email`;
     };
+
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 via-white to-blue-50">
@@ -62,7 +56,8 @@ export default function Signup() {
                         {error}
                     </div>
                 )}
-                <button
+
+<button
                     onClick={handleGoogleSignup}
                     className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 py-3 px-4 rounded-md hover:bg-gray-100 transition-shadow mb-4 shadow-sm"
                 >
@@ -84,11 +79,15 @@ export default function Signup() {
                     />
                     Sign in with Facebook
                 </button>
+          
                 <div className="flex items-center my-6">
                     <hr className="flex-grow border-gray-300" />
                     <span className="px-2 text-gray-500">OR</span>
                     <hr className="flex-grow border-gray-300" />
                 </div>
+            
+
+
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
                         <label htmlFor="fullname" className="text-sm font-medium text-gray-700">
