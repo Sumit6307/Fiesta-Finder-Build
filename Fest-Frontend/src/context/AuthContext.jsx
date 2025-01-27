@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
         try {
             const response = await axiosInstance.get('/users/profile'); // Fetch user profile
-            setUser(response.data); // Update context with user data
+            setUser(response.data);
             localStorage.setItem('user', JSON.stringify(response.data)); // Persist user in localStorage
         } catch (error) {
             console.error('Error fetching user:', error.response?.data?.message || error.message);

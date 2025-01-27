@@ -1,12 +1,12 @@
-import Navbar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MySignature  from '../assets/signature.png';
 
 export default function AboutPage() {
     return (
         <div>
-            <Navbar />
-            <div className="container mt-28 mx-auto max-w-3xl p-10 text-gray-500 text-sm font-medium">
+            <NavBar />
+            <div className="container mt-16 mx-auto max-w-3xl p-10 text-gray-500 text-sm font-medium">
                 <div>
                     <h1 className='text-4xl font-medium text-blue-700'>About Us</h1>
                 </div>

@@ -1,30 +1,30 @@
+import { Link } from "react-router-dom"
 export default function Footer () {
 
     const footerNavs = [
         {
-            href: 'javascript:void()',
+            to: '/about',
             name: 'About'
         },
         {
-            href: 'javascript:void()',
+            to: '/blog',
             name: 'Blog'
         },
         {
-            href: 'javascript:void()',
-            name: ''
+            to: '/',
+            name: 'Home'
         },
         {
-            href: 'javascript:void()',
+            to: '/team',
             name: 'Team'
         },
         {
-            href: 'javascript:void()',
+            to: '/careers',
             name: 'Careers'
         },
-
         {
-            href: 'javascript:void()',
-            name: 'Suuport'
+            to: '/policy',
+            name: 'Policies'
         }
     ]
 
@@ -40,9 +40,11 @@ export default function Footer () {
                 {
                     footerNavs.map((item, idx) => (
                         <li key={idx} className=" hover:text-gray-800">
-                            <a href={item.href}>
-                                { item.name }
-                            </a>
+                            <Link 
+                                to={item.to}
+                            >
+                                {item.name}
+                            </Link>
                         </li>
                     ))
                 }

@@ -20,11 +20,24 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+        <nav className="max-w-[1400px] mx-auto flex items-center justify-between px-6 py-4 bg-white ">
             {/* Logo */}
             <h1 className="text-2xl font-bold text-blue-600">
                 <Link to="/">Fiesta Finder</Link>
             </h1>
+
+            {/* New Navigation Links */}
+            <ul className="flex items-center space-x-4 gap-10">
+                <li>
+                    <Link to="/about" className="text-blue-600 font-medium hover:text-blue-800">About</Link>
+                </li>
+                <li>
+                    <Link to="/blog" className="text-blue-600 font-medium hover:text-blue-800">Blog</Link>
+                </li>
+                <li>
+                    <Link to="/careers" className="text-blue-600 font-medium hover:text-blue-800">Careers</Link>
+                </li>
+            </ul>
 
             {/* User Actions */}
             <div className="flex items-center space-x-4">

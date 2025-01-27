@@ -1,10 +1,10 @@
-import NavBar from "../components/Navbar"
+import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
 import BlogCard from "../components/BlogCard"
 
 export default function BlogPage() {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen ">
             <NavBar />
 
             <div className="container max-w-[1400px] mx-auto px-4 py-16">
