@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import TypingEffect from "./Typing-effect";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Countdown from 'react-countdown';
 
 export default function Hero() {
   const features = [
@@ -51,10 +52,26 @@ export default function Hero() {
       aosEffect: "flip-left",
     },
   ];
-    // Initialize AOS
+
+  // Initialize AOS
   useEffect(() => {
     AOS.init({ duration: 1200, once: true, easing: "ease-out" });
   }, []);
+
+  const testimonials = [
+    {
+      name: "John Doe",
+      feedback: "Fiesta made my event planning a breeze! Highly recommend.",
+      position: "Event Planner",
+    },
+    {
+      name: "Jane Smith",
+      feedback: "I was able to create a stunning event with their help.",
+      position: "Event Coordinator",
+    },
+  ];
+
+  const countdownDate = new Date("2025-03-01T00:00:00");
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-blue-100 via-white to-indigo-100">
@@ -140,6 +157,94 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Testimonials Section */}
+          <motion.div
+  className="mt-20"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+>
+  <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-6">
+    What Our Clients Say
+  </h2>
+  <div className="flex flex-wrap justify-center gap-10">
+    {testimonials.map((testimonial, index) => (
+      <motion.div
+        key={index}
+        className="w-full sm:w-1/2 lg:w-1/3 p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 hover:rotate-3 hover:shadow-2xl transition-all duration-300 touch-effect"
+        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          rotate: 0,
+        }}
+        viewport={{ once: true }}
+        transition={{
+          delay: index * 0.2,
+          duration: 0.8,
+          type: "spring",
+          stiffness: 100,
+        }}
+      >
+        <motion.p
+          className="italic text-gray-600 mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          "{testimonial.feedback}"
+        </motion.p>
+        <motion.h3
+          className="text-xl font-bold text-gray-900"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          {testimonial.name}
+        </motion.h3>
+        <motion.p
+          className="text-sm text-gray-500"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
+          {testimonial.position}
+        </motion.p>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+
+          {/* Countdown Timer Section */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
+              Limited Time Offer!
+            </h2>
+            <Countdown date={countdownDate} renderer={({ days, hours, minutes, seconds }) => (
+              <div className="flex justify-center items-center space-x-6 text-3xl font-bold text-gray-800">
+                <div>
+                  <span className="text-2xl">Days</span> {days}
+                </div>
+                <div>
+                  <span className="text-2xl">Hours</span> {hours}
+                </div>
+                <div>
+                  <span className="text-2xl">Minutes</span> {minutes}
+                </div>
+                <div>
+                  <span className="text-2xl">Seconds</span> {seconds}
+                </div>
+              </div>
+            )} />
+          </motion.div>
+
           {/* Hero Image */}
           <motion.div
             className="mt-20 relative max-w-5xl mx-auto"
@@ -160,6 +265,9 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Footer */}
+    
     </div>
   );
 }
