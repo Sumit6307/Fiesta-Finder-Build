@@ -1,30 +1,27 @@
-export default function BlogCard() {
+export default function BlogCard({ title, description, imgSrc }) {
     return (
-        <div className="max-w-lg overflow-hidden ">
+        <div className="max-w-lg overflow-hidden bg-white rounded-lg shadow-lg transform hover:scale-105 hover:shadow-xl hover:border-2 hover:border-indigo-500 transition-all duration-500 ease-in-out hover:rotate-2">
             <div className="relative">
                 <img
-                    src="https://plus.unsplash.com/premium_photo-1664303847960-586318f59035?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    className="w-full h-[300px] object-cover rounded-3xl"
-                    alt="Nissan Sedan"
+                    src={imgSrc}
+                    className="w-full h-[300px] object-cover rounded-t-lg transform hover:scale-110 hover:rotate-3 transition-all duration-700 ease-in-out"
+                    alt="Wedding Image"
                 />
             </div>
             
             <div className="p-6">
+                {/* Title with hover effect */}
                 <div className="flex items-center justify-between mb-2">
-                    <h1 className="text-2xl font-bold text-gray-800">Sedan</h1>
-                    <span className="px-3 py-1 text-sm text-blue-600 bg-blue-100 rounded-full">NISSAN</span>
+                    <h1 className="text-2xl font-semibold text-gray-800 hover:text-indigo-600 transition-all duration-300 ease-in-out">{title}</h1>
+                    <span className="px-3 py-1 text-sm text-indigo-600 bg-indigo-100 rounded-full">Featured</span>
                 </div>
                 
-                <h2 className="text-lg font-semibold text-gray-700 mb-3">NISSAN Passenger Car</h2>
+                {/* Description with hover effect */}
+                <h2 className="text-lg font-medium text-gray-700 mb-3 hover:text-indigo-500 transition-colors duration-300 ease-in-out">{description}</h2>
                 
-                <p className="text-gray-600 line-clamp-3 text-sm leading-relaxed">
-                    Until the introduction of corporate identity guidelines in 1981, two
-                    different car names (brand names) were used: small cars were called
-                    &quot;Datsun&quot; while large vehicles were named &quot;Nissan&quot;. The first NISSAN
-                    model was made with equipment purchased from an American company,
-                    Graham Paige Motors Corp., so the size of the vehicle was comparable
-                    to the Fords and Chevrolet at that time. The first car came off the
-                    line in March 1937.
+                {/* Short preview of the content */}
+                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 hover:text-gray-800 transition-all duration-500">
+                    Explore more about {title} and learn how to make your wedding day an unforgettable experience with unique ideas.
                 </p>
             </div>
         </div>
