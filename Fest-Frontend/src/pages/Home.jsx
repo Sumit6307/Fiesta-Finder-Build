@@ -72,7 +72,7 @@ export default function HomePage() {
       <Navbar2 onSearch={handleSearch} />  {/* Pass search function to Navbar2 */}
 
       {/* Filter / Sorting */}
-      <div className="flex flex-col md:flex-row mt-20 md:mt-28 p-2 md:p-4 gap-2 md:gap-4">
+      <div className="flex flex-col md:flex-row mt-10 md:mt-5 p-2 md:p-4 gap-2 md:gap-4 mx-auto">
         {/* Sidebar - Hidden on smaller screens */}
         <div className="hidden md:block md:sticky md:top-28 h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
           <Filtersidebar className="w-64" />
@@ -98,7 +98,7 @@ export default function HomePage() {
 
           {/* Main Content */}
           <div className="flex-1 px-2 md:px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 mx lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
               {currentHotels.map((hotel) => (
                 <HotelCard key={hotel.id} hotel={hotel} />
               ))}
