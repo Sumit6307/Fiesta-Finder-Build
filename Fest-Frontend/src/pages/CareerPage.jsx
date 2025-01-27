@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { motion } from "framer-motion"; // For smooth animations
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -16,7 +18,7 @@ export default function CareerPage() {
       type: "Full-time",
     },
     {
-      title: " UI/UX Designer",
+      title: "UI/UX Designer",
       icon: "🎨",
       location: "Remote",
       type: "Full-time",
@@ -63,43 +65,60 @@ export default function CareerPage() {
     },
   ];
 
+  const [showModal, setShowModal] = useState(null); // For expanded job info
+  const [isSubmitted, setIsSubmitted] = useState(false); // For form submission status
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 3000); // Hide success message after 3 seconds
+  };
+
   return (
     <div>
       <NavBar />
 
-      <div className="min-h-screen flex flex-col ">
+      <div className="min-h-screen flex flex-col">
         <div className="flex-grow container mx-auto px-4 py-16 space-y-16 max-w-6xl">
           <div className="text-center space-y-6">
-            <h1 className="text-5xl font-bold text-gray-800">
+            <motion.h1
+              className="text-5xl font-bold text-gray-800"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
               Join Our Team at Fiesta
-            </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2 }}
+            >
               We&apos;re building the future of event experiences, and we need
               exceptional talent to help us get there. Join a team of passionate
               individuals working to transform how people celebrate life&apos;s
               moments.
-            </p>
-            <div className="flex justify-center gap-6 pt-4">
-              <div className="px-6 py-2 bg-gray-100 rounded-full text-gray-700 font-medium">
-                <span>4.8/5</span> Glassdoor Rating
-              </div>
-              <div className="px-6 py-2 bg-gray-100 rounded-full text-gray-700 font-medium">
-                <span>3+</span> Team Members
-              </div>
-            </div>
+            </motion.p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className=" rounded-lg border p-8">
+            <motion.div
+              className="rounded-lg border p-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                <span className="mr-2">👥</span>
-                Open Positions
+                <span className="mr-2">👥</span> Open Positions
               </h2>
               <div className="space-y-4">
-                {positions.map((position) => (
-                  <div
+                {positions.map((position, index) => (
+                  <motion.div
                     key={position.title}
                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
+                    whileHover={{ scale: 1.05, backgroundColor: "#f1f5f9" }}
+                    onClick={() => setShowModal(index === showModal ? null : index)}
                   >
                     <div className="flex items-center space-x-4">
                       <span className="text-2xl p-2 bg-white rounded-lg">
@@ -114,42 +133,71 @@ export default function CareerPage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                    {showModal === index && (
+                      <motion.div
+                        className="mt-4 p-4 bg-gray-100 rounded-lg text-gray-700"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>Additional job details about {position.title}.</p>
+                      </motion.div>
+                    )}
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className=" rounded-lg border p-8">
+            <motion.div
+              className="rounded-lg border p-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                <span className="mr-2">🎁</span>
-                Benefits & Perks
+                <span className="mr-2">🎁</span> Benefits & Perks
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 {benefits.map((benefit) => (
-                  <div
+                  <motion.div
                     key={benefit.title}
                     className="p-4 bg-gray-50 rounded-lg border border-gray-200"
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "#e0e7ff",
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <span className="text-2xl mb-2 inline-block">
-                      {benefit.icon}
-                    </span>
-                    <h3 className="font-medium text-gray-800">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      {benefit.description}
-                    </p>
-                  </div>
+                    <span className="text-2xl mb-2 inline-block">{benefit.icon}</span>
+                    <h3 className="font-medium text-gray-800">{benefit.title}</h3>
+                    <p className="text-sm text-gray-600">{benefit.description}</p>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className=" rounded-lg p-8">
+          {isSubmitted && (
+            <motion.div
+              className="bg-green-500 text-white p-4 rounded-lg text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              Application Submitted Successfully!
+            </motion.div>
+          )}
+
+          <motion.div
+            className="rounded-lg p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
               Take the Next Step
             </h2>
-            <form className="space-y-6 max-w-3xl mx-auto">
+            <form className="space-y-6 max-w-3xl mx-auto" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -213,18 +261,24 @@ export default function CareerPage() {
                   placeholder="Share your background, skills, and why you're excited about Fiesta"
                 />
               </div>
-              <div className="text-center pt-4">
+              <motion.div
+                className="text-center pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
                 <button
                   type="submit"
                   className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
                 >
                   Submit Application
                 </button>
-              </div>
+              </motion.div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
+
       <Footer />
     </div>
   );
