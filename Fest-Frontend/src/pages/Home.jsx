@@ -16,6 +16,14 @@ export default function HomePage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOption, setSortOption] = useState("Sort By");
     const [isLoading, setIsLoading] = useState(true); // Loading state
+    const [filters, setFilters] = useState({
+        minPrice: 0,
+        maxPrice: 300000,
+        location: "",
+        promotions: [],
+        amenities: [],
+        nearbyAttractions: [],
+    });
 
     // Fetch data from the public folder
     useEffect(() => {
@@ -74,6 +82,35 @@ export default function HomePage() {
         setCurrentPage(1); // Reset to first page after sorting
     };
 
+    // Apply filters whenever filters change
+    useEffect(() => {
+        const filtered = hotels.filter((hotel) => {
+            const matchesPrice = hotel.price >= filters.minPrice && hotel.price <= filters.maxPrice;
+            const matchesLocation = hotel.location.toLowerCase().includes(filters.location.toLowerCase());
+            const matchesPromotions = filters.promotions.length === 0 || filters.promotions.some((promotion) => hotel.promotions.includes(promotion));
+            const matchesAmenities = filters.amenities.length === 0 || filters.amenities.every((amenity) => hotel.amenities.includes(amenity));
+            const matchesAttractions = filters.nearbyAttractions.length === 0 || filters.nearbyAttractions.some((attraction) => hotel.nearbyAttractions.includes(attraction));
+
+            return matchesPrice && matchesLocation && matchesPromotions && matchesAmenities && matchesAttractions;
+        });
+
+        setFilteredHotels(filtered);
+        setTotalPages(Math.ceil(filtered.length / hotelsPerPage)); // Recalculate pages after filtering
+        setCurrentPage(1); // Reset to first page after filtering
+    }, [filters, hotels]);
+
+    // Reset filters
+    const handleResetFilters = () => {
+        setFilters({
+            minPrice: 0,
+            maxPrice: 300000,
+            location: "",
+            promotions: [],
+            amenities: [],
+            nearbyAttractions: [],
+        });
+    };
+
     // Get hotels for the current page
     const indexOfLastHotel = currentPage * hotelsPerPage;
     const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
@@ -92,7 +129,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row mt-20 md:mt-28 p-2 md:p-4 gap-2 md:gap-4">
                 {/* Sidebar - Hidden on smaller screens */}
                 <div className="hidden md:block md:sticky md:top-28 h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
-                    <Filtersidebar className="w-64" />
+                    <Filtersidebar onFilterChange={setFilters} onResetFilters={handleResetFilters} />
                 </div>
 
                 <div className="flex-1">

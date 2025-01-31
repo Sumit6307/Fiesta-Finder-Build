@@ -1,63 +1,44 @@
 import { useState } from "react";
 
-const Filtersidebar = ({ hotels, setFilteredHotels }) => {
+const Filtersidebar = ({ onFilterChange, onResetFilters }) => {
     const [filters, setFilters] = useState({
         minPrice: 0,
         maxPrice: 300000,
-        typeOfPlace: "",
-        region: "",
-        rooms: 1,
-        bathrooms: 1,
-        beds: 1,
-        guests: 1,
-        amenities: [],
-        rating: "",
+        location: "",
         promotions: [],
-        nearbyAttractions: ""
+        amenities: [],
+        nearbyAttractions: [],
     });
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFilters({ ...filters, [name]: value });
+        const updatedFilters = { ...filters, [name]: value };
+        setFilters(updatedFilters);
+        onFilterChange(updatedFilters); // Notify parent component of filter changes
     };
 
     const handleCheckboxChange = (category, value) => {
-        setFilters((prev) => ({
-            ...prev,
-            [category]: prev[category].includes(value)
-                ? prev[category].filter((item) => item !== value)
-                : [...prev[category], value],
-        }));
+        const updatedFilters = {
+            ...filters,
+            [category]: filters[category].includes(value)
+                ? filters[category].filter((item) => item !== value) // Remove if already selected
+                : [...filters[category], value], // Add if not selected
+        };
+        setFilters(updatedFilters);
+        onFilterChange(updatedFilters); // Notify parent component of filter changes
     };
 
-    const applyFilters = () => {
-        let filtered = hotels.filter(hotel => 
-            hotel.price >= filters.minPrice && 
-            hotel.price <= filters.maxPrice &&
-            (filters.rating ? hotel.rating >= filters.rating : true) &&
-            (filters.nearbyAttractions ? hotel.nearbyAttractions.includes(filters.nearbyAttractions) : true) &&
-            (filters.promotions.length > 0 ? filters.promotions.some(promo => hotel.promotions.includes(promo)) : true) &&
-            (filters.amenities.length > 0 ? filters.amenities.every(amenity => hotel.amenities.includes(amenity)) : true)
-        );
-        setFilteredHotels(filtered);
-    };
-
-    const resetFilters = () => {
-        setFilters({
+    const handleReset = () => {
+        const resetFilters = {
             minPrice: 0,
             maxPrice: 300000,
-            typeOfPlace: "",
-            region: "",
-            rooms: 1,
-            bathrooms: 1,
-            beds: 1,
-            guests: 1,
-            amenities: [],
-            rating: "",
+            location: "",
             promotions: [],
-            nearbyAttractions: ""
-        });
-        setFilteredHotels(hotels);
+            amenities: [],
+            nearbyAttractions: [],
+        };
+        setFilters(resetFilters);
+        onResetFilters(resetFilters); // Notify parent component to reset filters
     };
 
     return (
@@ -66,58 +47,106 @@ const Filtersidebar = ({ hotels, setFilteredHotels }) => {
             <div>
                 <h3 className="text-lg font-bold mb-3 text-gray-800">Price Range</h3>
                 <div className="flex items-center gap-3">
-                    <input type="number" name="minPrice" value={filters.minPrice} onChange={handleInputChange} placeholder="Min" className="w-full p-2.5 border rounded-lg" />
-                    <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleInputChange} placeholder="Max" className="w-full p-2.5 border rounded-lg" />
+                    <input
+                        type="number"
+                        name="minPrice"
+                        value={filters.minPrice}
+                        onChange={handleInputChange}
+                        className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                        placeholder="Min"
+                    />
+                    <input
+                        type="number"
+                        name="maxPrice"
+                        value={filters.maxPrice}
+                        onChange={handleInputChange}
+                        className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                        placeholder="Max"
+                    />
                 </div>
             </div>
 
-            {/* Star Rating Filter */}
+            {/* Location */}
             <div>
-                <h3 className="text-lg font-bold mb-3 text-gray-800">Star Rating</h3>
-                <select name="rating" value={filters.rating} onChange={handleInputChange} className="w-full p-2.5 border rounded-lg">
-                    <option value="">All Ratings</option>
-                    {[1, 2, 3, 4, 5].map((star) => (
-                        <option key={star} value={star}>{star} Stars & Up</option>
-                    ))}
-                </select>
+                <h3 className="text-lg font-bold mb-3 text-gray-800">Location</h3>
+                <input
+                    type="text"
+                    name="location"
+                    value={filters.location}
+                    onChange={handleInputChange}
+                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                    placeholder="Enter location"
+                />
             </div>
 
-            {/* Promotions Filter */}
+            {/* Promotions */}
             <div>
                 <h3 className="text-lg font-bold mb-3 text-gray-800">Promotions</h3>
                 <div className="space-y-2">
-                    {["10% off", "5% off", "Free Parking"].map((promo) => (
-                        <label key={promo} className="flex items-center cursor-pointer p-2 rounded-lg">
-                            <input type="checkbox" onChange={() => handleCheckboxChange("promotions", promo)} className="w-4 h-4" />
-                            <span className="ml-3">{promo}</span>
-                        </label>
-                    ))}
+                    {["10% off", "5% off", "Free Parking", "Complimentary Breakfast"].map(
+                        (promotion) => (
+                            <label key={promotion} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={filters.promotions.includes(promotion)}
+                                    onChange={() => handleCheckboxChange("promotions", promotion)}
+                                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                                />
+                                <span className="ml-3 text-gray-700">{promotion}</span>
+                            </label>
+                        )
+                    )}
                 </div>
             </div>
 
-            {/* Nearby Attractions Filter */}
-            <div>
-                <h3 className="text-lg font-bold mb-3 text-gray-800">Nearby Attractions</h3>
-                <input type="text" name="nearbyAttractions" value={filters.nearbyAttractions} onChange={handleInputChange} placeholder="Enter an attraction" className="w-full p-2.5 border rounded-lg" />
-            </div>
-
-            {/* Amenities Filter */}
+            {/* Amenities */}
             <div>
                 <h3 className="text-lg font-bold mb-3 text-gray-800">Amenities</h3>
                 <div className="space-y-2">
-                    {["Wi-Fi", "Swimming Pool", "Gym", "Parking"].map((amenity) => (
-                        <label key={amenity} className="flex items-center cursor-pointer p-2 rounded-lg">
-                            <input type="checkbox" onChange={() => handleCheckboxChange("amenities", amenity)} className="w-4 h-4" />
-                            <span className="ml-3">{amenity}</span>
-                        </label>
-                    ))}
+                    {["Wi-Fi", "Swimming Pool", "Gym", "Parking", "Restaurant", "Conference Hall"].map(
+                        (amenity) => (
+                            <label key={amenity} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={filters.amenities.includes(amenity)}
+                                    onChange={() => handleCheckboxChange("amenities", amenity)}
+                                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                                />
+                                <span className="ml-3 text-gray-700">{amenity}</span>
+                            </label>
+                        )
+                    )}
                 </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex justify-between">
-                <button onClick={applyFilters} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Check</button>
-                <button onClick={resetFilters} className="px-4 py-2 bg-gray-400 text-white rounded-lg">Reset</button>
+            {/* Nearby Attractions */}
+            <div>
+                <h3 className="text-lg font-bold mb-3 text-gray-800">Nearby Attractions</h3>
+                <div className="space-y-2">
+                    {["Hazratganj Market", "Lucknow Zoo", "Bara Imambara", "Ambedkar Park", "Fun Republic Mall", "Gomti Riverfront"].map(
+                        (attraction) => (
+                            <label key={attraction} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={filters.nearbyAttractions.includes(attraction)}
+                                    onChange={() => handleCheckboxChange("nearbyAttractions", attraction)}
+                                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                                />
+                                <span className="ml-3 text-gray-700">{attraction}</span>
+                            </label>
+                        )
+                    )}
+                </div>
+            </div>
+
+            {/* Reset Button */}
+            <div>
+                <button
+                    onClick={handleReset}
+                    className="w-full py-2.5 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-colors"
+                >
+                    Reset Filters
+                </button>
             </div>
         </div>
     );
