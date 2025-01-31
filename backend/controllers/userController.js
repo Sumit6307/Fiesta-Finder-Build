@@ -3,7 +3,14 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import crypto from 'crypto';
 import sendEmail from '../utils/sendEmail.js';
+import mongoose from 'mongoose';
+import { fileURLToPath } from "url";
+import fs from "fs";
+import path from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const HOTELS_FILE = path.join(__dirname, "../../Fest-Frontend/public/hotels.json");
 
 
 // Register User
@@ -48,6 +55,8 @@ export const registerUser = async (req, res) => {
 
 
 
+
+
 // login User
 
 
@@ -87,9 +96,9 @@ export const loginUser = async (req, res) => {
                 </div>
             `;
 
-            await sendEmail({ to: email, subject: 'Welcome Back to Fiesta Finder!', text: 'Welcome back!', html });
-            user.hasLoggedIn = true;
-            await user.save();
+            // await sendEmail({ to: email, subject: 'Welcome Back to Fiesta Finder!', text: 'Welcome back!', html });
+            // user.hasLoggedIn = true;
+            // await user.save();
         }
 
         res.json({ message: 'Login successful!', user: { fullname: user.fullname, email: user.email } });
@@ -276,5 +285,67 @@ export const verifyEmail = async (req, res) => {
         res.status(200).json({ message: 'Email verified successfully! You can now log in.' });
     } catch (error) {
         res.status(500).json({ message: 'Error verifying email!', error: error.message });
+    }
+};
+
+export const toggleFavoriteHotel = async (req, res) => {
+    try {
+        const { hotelId } = req.body;
+        const userId = req.user.id;
+
+        // Validate ID before proceeding
+        if (!hotelId || !mongoose.Types.ObjectId.isValid(hotelId)) {
+            return res.status(400).json({ message: "Invalid hotel ID" });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const hotelObjectId = new mongoose.Types.ObjectId(hotelId);
+        const isFavorite = user.favorites.some(id => id.equals(hotelObjectId));
+
+        if (isFavorite) {
+            user.favorites = user.favorites.filter(id => !id.equals(hotelObjectId));
+        } else {
+            user.favorites.push(hotelObjectId);
+        }
+
+        await user.save();
+        res.status(200).json(user.favorites);
+    } catch (err) {
+        console.error("Error toggling favorite:", err);
+        res.status(500).json({ message: "Internal Server Error!" });
+    }
+};
+
+export const getFavoriteHotels = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Read hotels data from the JSON file
+        fs.readFile(HOTELS_FILE, "utf8", (err, data) => {
+            if (err) {
+                return res.status(500).json({ message: "Error reading hotels data", error: err });
+            }
+
+            const hotels = JSON.parse(data);
+            // Convert user.favorites (ObjectId) to strings for comparison
+            const favoriteHotelIds = user.favorites.map(id => id.toString());
+            // Filter hotels that are in the user's favorites
+            const favoriteHotels = hotels.filter(hotel => favoriteHotelIds.includes(hotel._id));
+
+            console.log("Favorite Hotels:", favoriteHotels); // Debugging
+            res.status(200).json(favoriteHotels);
+        });
+    } catch (error) {
+        console.error("Error fetching favorite hotels:", error); // Debugging
+        res.status(500).json({ message: "Error fetching favorite hotels", error });
     }
 };

@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b1",
     "name": "The Grand Radiant Hotel",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -13,7 +13,7 @@
     "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
   },
   {
-    "id": 2,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b2",
     "name": "Hotel Galaxy Grand",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -26,7 +26,7 @@
     "nearbyAttractions": ["Ambedkar Park", "Fun Republic Mall", "Gomti Riverfront"]
   },
   {
-    "id": 3,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b3",
     "name": "The Event House Lucknow",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -39,7 +39,7 @@
     "nearbyAttractions": ["Bara Imambara", "Rumi Darwaza", "British Residency"]
   },
   {
-    "id": 4,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b4",
     "name": "Divino Events By S Quattro Solutions",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -52,7 +52,7 @@
     "nearbyAttractions": ["Wave Mall", "Ambedkar Park", "Janeshwar Mishra Park"]
   },
   {
-    "id": 5,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b5",
     "name": "The Bundgarh Resort",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -65,7 +65,7 @@
     "nearbyAttractions": ["Janeshwar Mishra Park", "Ambedkar Park", "Phoenix Palassio Mall"]
   },
   {
-    "id": 6,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b6",
     "name": "Hotel Prayag Inn",
     "location": "Dhoomanganj, Allahabad",
     "latitude": 25.4358,
@@ -78,7 +78,7 @@
     "nearbyAttractions": ["Triveni Sangam", "Allahabad Museum", "Anand Bhawan"]
   },
   {
-    "id": 7,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b7",
     "name": "Trident Lawn",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -91,7 +91,7 @@
     "nearbyAttractions": ["Gomti Riverfront", "Ambedkar Park", "Wave Mall"]
   },
   {
-    "id": 8,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b8",
     "name": "Hotel Moments, Lucknow",
     "location": "Ashiyana, Lucknow",
     "latitude": 26.7945,
@@ -104,7 +104,7 @@
     "nearbyAttractions": ["Phoenix Palassio Mall", "Gomti Riverfront", "Janeshwar Mishra Park"]
   },
   {
-    "id": 9,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1b9",
     "name": "The Royal Orchid Hotel",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -117,7 +117,7 @@
     "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
   },
   {
-    "id": 10,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1ba",
     "name": "The Luxury Palace",
     "location": "Indira Nagar, Lucknow",
     "latitude": 26.8863,
@@ -130,7 +130,7 @@
     "nearbyAttractions": ["Wave Mall", "Janeshwar Mishra Park", "Ambedkar Park"]
   },
   {
-    "id": 11,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1bb",
     "name": "The Grand Radiant Hotel",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -143,7 +143,7 @@
     "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
   },
   {
-    "id": 12,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1bc",
     "name": "Hotel Galaxy Grand",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -156,7 +156,7 @@
     "nearbyAttractions": ["Ambedkar Park", "Fun Republic Mall", "Gomti Riverfront"]
   },
   {
-    "id": 13,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1bd",
     "name": "The Event House Lucknow",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -169,7 +169,7 @@
     "nearbyAttractions": ["Bara Imambara", "Rumi Darwaza", "British Residency"]
   },
   {
-    "id": 14,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1be",
     "name": "Divino Events By S Quattro Solutions",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -182,7 +182,7 @@
     "nearbyAttractions": ["Wave Mall", "Ambedkar Park", "Janeshwar Mishra Park"]
   },
   {
-    "id": 15,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1bf",
     "name": "The Bundgarh Resort",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -195,7 +195,7 @@
     "nearbyAttractions": ["Janeshwar Mishra Park", "Ambedkar Park", "Phoenix Palassio Mall"]
   },
   {
-    "id": 16,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1c0",
     "name": "Hotel Prayag Inn",
     "location": "Dhoomanganj, Allahabad",
     "latitude": 25.4358,
@@ -208,7 +208,7 @@
     "nearbyAttractions": ["Triveni Sangam", "Allahabad Museum", "Anand Bhawan"]
   },
   {
-    "id": 17,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1c1",
     "name": "Trident Lawn",
     "location": "Gomti Nagar, Lucknow",
     "latitude": 26.8642,
@@ -221,7 +221,7 @@
     "nearbyAttractions": ["Gomti Riverfront", "Ambedkar Park", "Wave Mall"]
   },
   {
-    "id": 18,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1c2",
     "name": "Hotel Moments, Lucknow",
     "location": "Ashiyana, Lucknow",
     "latitude": 26.7945,
@@ -234,7 +234,7 @@
     "nearbyAttractions": ["Phoenix Palassio Mall", "Gomti Riverfront", "Janeshwar Mishra Park"]
   },
   {
-    "id": 19,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1c3",
     "name": "The Royal Orchid Hotel",
     "location": "Hazratganj, Lucknow",
     "latitude": 26.8467,
@@ -247,267 +247,7 @@
     "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
   },
   {
-    "id": 20,
-    "name": "The Luxury Palace",
-    "location": "Indira Nagar, Lucknow",
-    "latitude": 26.8863,
-    "longitude": 81.0139,
-    "price": 12000,
-    "rating": 4.9,
-    "promotions": ["20% off", "Free Spa Access"],
-    "amenities": ["Wi-Fi", "Spa", "Parking", "Gym"],
-    "image": "https://example.com/image10.jpg",
-    "nearbyAttractions": ["Wave Mall", "Janeshwar Mishra Park", "Ambedkar Park"]
-  },
-  {
-    "id": 21,
-    "name": "The Grand Radiant Hotel",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 3500,
-    "rating": 4.8,
-    "promotions": ["10% off", "Free Parking"],
-    "amenities": ["Wi-Fi", "Swimming Pool", "Gym", "Parking"],
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAJPiLqIMDxia_Uuf6oLbZewEseotgFusrqw&s",
-    "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
-  },
-  {
-    "id": 22,
-    "name": "Hotel Galaxy Grand",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 5000,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Wi-Fi", "Restaurant", "Conference Hall", "Parking"],
-    "image": "https://example.com/image2.jpg",
-    "nearbyAttractions": ["Ambedkar Park", "Fun Republic Mall", "Gomti Riverfront"]
-  },
-  {
-    "id": 23,
-    "name": "The Event House Lucknow",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 10000,
-    "rating": 5.0,
-    "promotions": ["15% off", "Complimentary Breakfast"],
-    "amenities": ["Banquet Hall", "Wi-Fi", "Parking", "Catering"],
-    "image": "https://example.com/image3.jpg",
-    "nearbyAttractions": ["Bara Imambara", "Rumi Darwaza", "British Residency"]
-  },
-  {
-    "id": 24,
-    "name": "Divino Events By S Quattro Solutions",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 50000,
-    "rating": 5.0,
-    "promotions": ["10% off", "VIP Lounge Access"],
-    "amenities": ["Luxury Seating", "Event Management", "Wi-Fi", "Parking"],
-    "image": "https://example.com/image4.jpg",
-    "nearbyAttractions": ["Wave Mall", "Ambedkar Park", "Janeshwar Mishra Park"]
-  },
-  {
-    "id": 25,
-    "name": "The Bundgarh Resort",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 8000,
-    "rating": 4.9,
-    "promotions": ["10% off"],
-    "amenities": ["Swimming Pool", "Wi-Fi", "Spa", "Parking"],
-    "image": "https://example.com/image5.jpg",
-    "nearbyAttractions": ["Janeshwar Mishra Park", "Ambedkar Park", "Phoenix Palassio Mall"]
-  },
-  {
-    "id": 26,
-    "name": "Hotel Prayag Inn",
-    "location": "Dhoomanganj, Allahabad",
-    "latitude": 25.4358,
-    "longitude": 81.8463,
-    "price": 6500,
-    "rating": 4.8,
-    "promotions": ["10% off", "Complimentary WiFi"],
-    "amenities": ["Wi-Fi", "Restaurant", "Gym", "Parking"],
-    "image": "https://example.com/image6.jpg",
-    "nearbyAttractions": ["Triveni Sangam", "Allahabad Museum", "Anand Bhawan"]
-  },
-  {
-    "id": 27,
-    "name": "Trident Lawn",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 10000,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Banquet Hall", "Open Lawn", "Parking", "Wi-Fi"],
-    "image": "https://example.com/image7.jpg",
-    "nearbyAttractions": ["Gomti Riverfront", "Ambedkar Park", "Wave Mall"]
-  },
-  {
-    "id": 28,
-    "name": "Hotel Moments, Lucknow",
-    "location": "Ashiyana, Lucknow",
-    "latitude": 26.7945,
-    "longitude": 80.8996,
-    "price": 9500,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Wi-Fi", "Restaurant", "Parking", "Gym"],
-    "image": "https://example.com/image8.jpg",
-    "nearbyAttractions": ["Phoenix Palassio Mall", "Gomti Riverfront", "Janeshwar Mishra Park"]
-  },
-  {
-    "id": 29,
-    "name": "The Royal Orchid Hotel",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 7000,
-    "rating": 4.7,
-    "promotions": ["Free Welcome Drink"],
-    "amenities": ["Wi-Fi", "Swimming Pool", "Parking", "Gym"],
-    "image": "https://example.com/image9.jpg",
-    "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
-  },
-  {
-    "id": 30,
-    "name": "The Luxury Palace",
-    "location": "Indira Nagar, Lucknow",
-    "latitude": 26.8863,
-    "longitude": 81.0139,
-    "price": 12000,
-    "rating": 4.9,
-    "promotions": ["20% off", "Free Spa Access"],
-    "amenities": ["Wi-Fi", "Spa", "Parking", "Gym"],
-    "image": "https://example.com/image10.jpg",
-    "nearbyAttractions": ["Wave Mall", "Janeshwar Mishra Park", "Ambedkar Park"]
-  },
-  {
-    "id": 31,
-    "name": "The Grand Radiant Hotel",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 3500,
-    "rating": 4.8,
-    "promotions": ["10% off", "Free Parking"],
-    "amenities": ["Wi-Fi", "Swimming Pool", "Gym", "Parking"],
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAJPiLqIMDxia_Uuf6oLbZewEseotgFusrqw&s",
-    "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
-  },
-  {
-    "id": 32,
-    "name": "Hotel Galaxy Grand",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 5000,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Wi-Fi", "Restaurant", "Conference Hall", "Parking"],
-    "image": "https://example.com/image2.jpg",
-    "nearbyAttractions": ["Ambedkar Park", "Fun Republic Mall", "Gomti Riverfront"]
-  },
-  {
-    "id": 33,
-    "name": "The Event House Lucknow",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 10000,
-    "rating": 5.0,
-    "promotions": ["15% off", "Complimentary Breakfast"],
-    "amenities": ["Banquet Hall", "Wi-Fi", "Parking", "Catering"],
-    "image": "https://example.com/image3.jpg",
-    "nearbyAttractions": ["Bara Imambara", "Rumi Darwaza", "British Residency"]
-  },
-  {
-    "id": 34,
-    "name": "Divino Events By S Quattro Solutions",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 50000,
-    "rating": 5.0,
-    "promotions": ["10% off", "VIP Lounge Access"],
-    "amenities": ["Luxury Seating", "Event Management", "Wi-Fi", "Parking"],
-    "image": "https://example.com/image4.jpg",
-    "nearbyAttractions": ["Wave Mall", "Ambedkar Park", "Janeshwar Mishra Park"]
-  },
-  {
-    "id": 35,
-    "name": "The Bundgarh Resort",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 8000,
-    "rating": 4.9,
-    "promotions": ["10% off"],
-    "amenities": ["Swimming Pool", "Wi-Fi", "Spa", "Parking"],
-    "image": "https://example.com/image5.jpg",
-    "nearbyAttractions": ["Janeshwar Mishra Park", "Ambedkar Park", "Phoenix Palassio Mall"]
-  },
-  {
-    "id": 36,
-    "name": "Hotel Prayag Inn",
-    "location": "Dhoomanganj, Allahabad",
-    "latitude": 25.4358,
-    "longitude": 81.8463,
-    "price": 6500,
-    "rating": 4.8,
-    "promotions": ["10% off", "Complimentary WiFi"],
-    "amenities": ["Wi-Fi", "Restaurant", "Gym", "Parking"],
-    "image": "https://example.com/image6.jpg",
-    "nearbyAttractions": ["Triveni Sangam", "Allahabad Museum", "Anand Bhawan"]
-  },
-  {
-    "id": 37,
-    "name": "Trident Lawn",
-    "location": "Gomti Nagar, Lucknow",
-    "latitude": 26.8642,
-    "longitude": 81.0217,
-    "price": 10000,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Banquet Hall", "Open Lawn", "Parking", "Wi-Fi"],
-    "image": "https://example.com/image7.jpg",
-    "nearbyAttractions": ["Gomti Riverfront", "Ambedkar Park", "Wave Mall"]
-  },
-  {
-    "id": 38,
-    "name": "Hotel Moments, Lucknow",
-    "location": "Ashiyana, Lucknow",
-    "latitude": 26.7945,
-    "longitude": 80.8996,
-    "price": 9500,
-    "rating": 4.9,
-    "promotions": ["5% off"],
-    "amenities": ["Wi-Fi", "Restaurant", "Parking", "Gym"],
-    "image": "https://example.com/image8.jpg",
-    "nearbyAttractions": ["Phoenix Palassio Mall", "Gomti Riverfront", "Janeshwar Mishra Park"]
-  },
-  {
-    "id": 39,
-    "name": "The Royal Orchid Hotel",
-    "location": "Hazratganj, Lucknow",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "price": 7000,
-    "rating": 4.7,
-    "promotions": ["Free Welcome Drink"],
-    "amenities": ["Wi-Fi", "Swimming Pool", "Parking", "Gym"],
-    "image": "https://example.com/image9.jpg",
-    "nearbyAttractions": ["Hazratganj Market", "Lucknow Zoo", "Bara Imambara"]
-  },
-  {
-    "id": 40,
+    "_id": "64f1b1b1b1b1b1b1b1b1b1c4",
     "name": "The Luxury Palace",
     "location": "Indira Nagar, Lucknow",
     "latitude": 26.8863,
@@ -519,5 +259,4 @@
     "image": "https://example.com/image10.jpg",
     "nearbyAttractions": ["Wave Mall", "Janeshwar Mishra Park", "Ambedkar Park"]
   }
-  
 ]

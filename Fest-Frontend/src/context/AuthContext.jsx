@@ -1,45 +1,43 @@
-import { createContext, useState, useEffect } from 'react';
-import axiosInstance from '../api/axiosInstance'; // Axios instance for API calls
+// src/context/AuthContext.jsx
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const AuthContext = createContext(null);
+// Create the AuthContext
+export const AuthContext = createContext();
 
+// Create a custom hook to use the AuthContext
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+// AuthProvider component that wraps your application
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-    // Check if there's a user in localStorage on page load
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser)); // Set user from localStorage
-        } else {
-            fetchUser();
-        }
-    }, []);
+  useEffect(() => {
+    // Check localStorage or cookies for user authentication
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
 
-    // Fetch the user details from the backend (when user not in localStorage)
-    const fetchUser = async () => {
-        try {
-            const response = await axiosInstance.get('/users/profile'); // Fetch user profile
-            setUser(response.data);
-            localStorage.setItem('user', JSON.stringify(response.data)); // Persist user in localStorage
-        } catch (error) {
-            console.error('Error fetching user:', error.response?.data?.message || error.message);
-        }
-    };
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData)); // Save user to localStorage
+  };
 
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData)); // Persist user to localStorage
-    };
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user'); // Remove user from localStorage
+  };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('user'); // Remove user from localStorage
-    };
+  // The context value that will be available to consuming components
+  const value = { user, setUser, login, logout };
 
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

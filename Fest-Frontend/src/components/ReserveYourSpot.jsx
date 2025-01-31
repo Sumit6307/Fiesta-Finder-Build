@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Navbar2 from "../components/Navbar2"; // Keeping your Navbar2
-import Footer from "../components/Footer"; // Keeping your original Footer
+import Navbar2 from "../components/Navbar2";
+import Footer from "../components/Footer";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "../styles/leaflet.css";
-import { motion } from "framer-motion"; // For animations
+import { motion } from "framer-motion";
 
 const ReserveYourSpot = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // id is now a MongoDB-style string (e.g., "64f1b1b1b1b1b1b1b1b1b1b1")
   const [hotel, setHotel] = useState(null);
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
@@ -20,7 +20,8 @@ const ReserveYourSpot = () => {
     fetch("/hotels.json")
       .then((response) => response.json())
       .then((data) => {
-        const selectedHotel = data.find((hotel) => hotel.id === parseInt(id));
+        // Match the _id field instead of id
+        const selectedHotel = data.find((hotel) => hotel._id === id); // No need for parseInt
         setHotel(selectedHotel);
 
         if (selectedHotel && selectedHotel.latitude && selectedHotel.longitude) {
@@ -166,7 +167,7 @@ const ReserveYourSpot = () => {
         </motion.div>
       </div>
 
-      {/* Footer Section - Keeping your original footer */}
+      {/* Footer Section */}
       <Footer />
     </div>
   );

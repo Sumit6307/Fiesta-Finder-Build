@@ -6,7 +6,8 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     resetToken: { type: String },
     resetTokenExpiration: { type: Date },
-    isVerified: { type: Boolean, default: false }, // Add isVerified field
+    isVerified: { type: Boolean, default: false },
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hotel' }], // Array of favorite hotel IDs
 }, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);

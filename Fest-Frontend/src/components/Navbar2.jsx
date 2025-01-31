@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from '../api/axiosInstance';
+import { AuthContext } from '../context/AuthContext';  // Import AuthContext correctly
 
 export default function Navbar2({ onSearch }) {
-    const [user, setUser] = useState(null); // To store logged-in user info
-    const [searchQuery, setSearchQuery] = useState(''); // Search query state
-    const [isFocused, setIsFocused] = useState(false); // To manage focus state
-    const [searchSuggestions, setSearchSuggestions] = useState([]); // Dynamic suggestions
-    const [showSuggestions, setShowSuggestions] = useState(false); // Control dropdown visibility
+    const { user, setUser, logout } = useContext(AuthContext);  // Use context here
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
+    const [searchSuggestions, setSearchSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,24 +21,26 @@ export default function Navbar2({ onSearch }) {
             }
         };
         fetchUserDetails();
-    }, []);
+    }, [setUser]);
+
+    const handleFavoritesClick = () => {
+        navigate('/favorites'); // Navigate to the favorites page
+    };
 
     const handleLogout = async () => {
         try {
             await axios.post('/users/logout', {}, { withCredentials: true });
-            setUser(null);
+            logout();
             navigate('/login');
         } catch (error) {
             alert('Error logging out!');
         }
     };
 
-    // Handle input change for search
     const handleInputChange = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
 
-        // Show suggestions if query is not empty
         if (query.trim() !== '') {
             try {
                 const response = await axios.get(`/search/suggestions?query=${query}`);
@@ -52,7 +55,6 @@ export default function Navbar2({ onSearch }) {
         }
     };
 
-    // Handle search submission
     const handleSearch = (e) => {
         e.preventDefault();
         if (onSearch) {
@@ -61,7 +63,6 @@ export default function Navbar2({ onSearch }) {
         setShowSuggestions(false);
     };
 
-    // Handle suggestion click
     const handleSuggestionClick = (suggestion) => {
         setSearchQuery(suggestion);
         setShowSuggestions(false);
@@ -84,7 +85,7 @@ export default function Navbar2({ onSearch }) {
                     Go to Home Page
                 </Link>
             </div>
-            
+
             {/* Search Bar */}
             <div className={`relative flex-grow mx-4 max-w-xl transition-all duration-500 ease-in-out ${isFocused ? 'opacity-100' : 'opacity-75'}`}>
                 <form
@@ -138,6 +139,12 @@ export default function Navbar2({ onSearch }) {
                             className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 transform hover:scale-105"
                         >
                             Profile
+                        </button>
+                        <button
+                            onClick={handleFavoritesClick}
+                            className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 transform hover:scale-105"
+                        >
+                            Favorites
                         </button>
                         <button
                             onClick={handleLogout}
