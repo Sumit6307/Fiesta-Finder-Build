@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import axios from '../api/axiosInstance';
-import { AuthContext } from '../context/AuthContext';  // Import AuthContext correctly
+import { AuthContext } from '../context/AuthContext';
 
 export default function Navbar2({ onSearch }) {
-    const { user, setUser, logout } = useContext(AuthContext);  // Use context here
+    const { user, setUser, logout } = useContext(AuthContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -24,10 +24,13 @@ export default function Navbar2({ onSearch }) {
     }, [setUser]);
 
     const handleFavoritesClick = () => {
-        navigate('/favorites'); // Navigate to the favorites page
+        navigate('/favorites');
     };
 
     const handleLogout = async () => {
+        const confirmLogout = window.confirm("Are you sure you want to log out?");
+        if (!confirmLogout) return;
+
         try {
             await axios.post('/users/logout', {}, { withCredentials: true });
             logout();
