@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
 import HotelCard from "../components/HotelCard";
 import { useAuth } from "../context/AuthContext";
@@ -8,6 +9,7 @@ const Favorite = () => {
     const { user } = useAuth();
     const [favoriteHotels, setFavoriteHotels] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Loading state
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFavoriteHotels = async () => {
@@ -31,6 +33,14 @@ const Favorite = () => {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
+            {/* Back Button */}
+            <button
+                onClick={() => navigate(-1)}
+                className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+            >
+                ⬅ Back
+            </button>
+
             <h1 className="text-3xl font-bold text-gray-800 mb-6">Your Favorites</h1>
             {isLoading ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

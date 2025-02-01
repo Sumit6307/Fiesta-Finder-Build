@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar2 from "../components/Navbar2";
 import Footer from "../components/Footer";
 import "leaflet/dist/leaflet.css";
@@ -13,6 +13,7 @@ const ReserveYourSpot = () => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [guests, setGuests] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let map;
@@ -67,6 +68,14 @@ const ReserveYourSpot = () => {
       <Navbar2 />
 
       <div className="flex-grow container mx-auto px-4 py-8 mt-24">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-9 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+        >
+          ⬅ Back
+        </button>
+
         {/* Hotel Info Section */}
         <motion.div
           className="bg-white rounded-lg shadow-xl mb-8 overflow-hidden transform transition-all hover:scale-105"
