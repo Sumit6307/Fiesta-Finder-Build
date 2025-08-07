@@ -67,9 +67,8 @@ export default function AboutPage() {
                 </div>
 
                 <div className='mt-10 text-center'>
-                    <img src={MySignature} alt="Signature" className='w-52 mx-auto transform hover:scale-105 transition-all duration-300' />
                     <div className='flex flex-row gap-2 justify-center mt-4'>
-                        <p className='text-blue-900 text-xl'>John Doe - </p>
+                        <p className='text-blue-900 text-xl'>Sumit Kesarwani - </p>
                         <p className='text-blue-900 text-xl'>Founder, Fiesta</p>
                     </div>
                 </div>
